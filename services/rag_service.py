@@ -1,6 +1,6 @@
 from loaders.pdf_loader import PDFLoader
 from loaders.text_loader import TextLoader
-
+from chunking.splitter import TextSplitter
 
 class RAGService:
 
@@ -10,6 +10,15 @@ class RAGService:
 
         self.text = TextLoader()
 
+        self.splitter = TextSplitter()
+
+    def chunk_document(
+        self,
+        text
+    ):
+
+        return self.splitter.split(text)
+    
     def load_document(
         self,
         filename
