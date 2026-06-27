@@ -26,10 +26,16 @@ async def upload_document(
         file.filename
     )
 
+    chunks = rag.chunk_document(
+        text
+    )
+
     return {
 
         "filename": file.filename,
 
         "characters": len(text)
+
+        "chunks": len(chunks)
 
     }
