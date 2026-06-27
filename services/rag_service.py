@@ -1,6 +1,7 @@
 from loaders.pdf_loader import PDFLoader
 from loaders.text_loader import TextLoader
 from chunking.splitter import TextSplitter
+from embeddings.embedding_service import EmbeddingService
 
 class RAGService:
 
@@ -11,6 +12,8 @@ class RAGService:
         self.text = TextLoader()
 
         self.splitter = TextSplitter()
+
+        self.embedding = EmbeddingService()
 
     def chunk_document(
         self,
@@ -33,3 +36,22 @@ class RAGService:
             return self.text.load(filename)
 
         return "Unsupported document."
+
+    def embed_chunks(
+        self,
+        chunks
+    ):
+    
+        vectors = []
+    
+        for chunk in chunks:
+    
+            vectors.append(
+    
+                self.embedding.create(
+                    chunk
+                )
+    
+            )
+    
+        return vectors
