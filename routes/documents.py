@@ -30,6 +30,10 @@ async def upload_document(
         text
     )
 
+    vectors = rag.embed_chunks(
+    chunks
+    )
+
     return {
 
         "filename": file.filename,
@@ -37,5 +41,7 @@ async def upload_document(
         "characters": len(text)
 
         "chunks": len(chunks)
+
+        "embeddings": len(vectors)
 
     }
